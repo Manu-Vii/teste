@@ -1,0 +1,17 @@
+//responsável por atualizar uma reserva
+
+
+import java.util.Date;
+
+public class AtualizadorDeReserva {
+
+
+    public static void atualizar(Reserva reserva, Date novaDataEntrada, Date novaDataSaida) {
+
+        Validacao.validarDatas(novaDataEntrada, novaDataSaida);
+        Validacao.validarDatasFuturas(novaDataEntrada, novaDataSaida);
+
+        reserva.setDataEntrada(novaDataEntrada);
+        reserva.setDataSaida(novaDataSaida);
+    }
+}
