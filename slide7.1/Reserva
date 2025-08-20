@@ -1,0 +1,63 @@
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+public class Reserva {
+
+
+    private Integer numeroQuarto;
+    private Date dataEntrada;
+    private Date dataSaida;
+
+
+    public Reserva(Integer numeroQuarto, Date dataEntrada, Date dataSaida) {
+        this.numeroQuarto = numeroQuarto;
+        this.dataEntrada = dataEntrada;
+        this.dataSaida = dataSaida;
+    }
+
+
+    public Integer getNumeroQuarto() {
+        return numeroQuarto;
+    }
+
+    public Date getDataEntrada() {
+        return dataEntrada;
+    }
+
+    public Date getDataSaida() {
+        return dataSaida;
+    }
+
+
+    public void setDataEntrada(Date dataEntrada) {
+        this.dataEntrada = dataEntrada;
+    }
+
+    public void setDataSaida(Date dataSaida) {
+        this.dataSaida = dataSaida;
+    }
+
+    // calcula a duração da reserva em dias
+    public long duracao() {
+
+        long diff = dataSaida.getTime() - dataEntrada.getTime();
+        //time unit faz tipo uma conversão de tempo
+        // diferença para dias usando a classe TimeUnit
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+    }
+
+    
+    @Override
+    public String toString() {
+
+        //formatador de data que exibi apenas o dia e o mês
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
+
+
+        return "Reserva: Quarto " + numeroQuarto
+                + ", entrada: " + sdf.format(dataEntrada) // Formata a data de entrada.
+                + ", saída: " + sdf.format(dataSaida)     // Formata a data de saída.
+                + ", " + duracao() + " noites";
+    }
+}
