@@ -1,0 +1,21 @@
+//essa validacao é tipo uma central que valida dados e mexe com as excessoes
+
+import java.util.Date;
+
+public class Validacao {
+
+    // valida se a data de saída é posterior a data de entrada
+    public static void validarDatas(Date dataEntrada, Date dataSaida) {
+        if (!dataSaida.after(dataEntrada)) {
+            throw new DominioExcecao("A data de saída deve ser posterior à data de entrada");
+        }
+    }
+
+    //valida se as datas são futuras em relação a data atual
+    public static void validarDatasFuturas(Date dataEntrada, Date dataSaida) {
+        Date agora = new Date();
+        if (dataEntrada.before(agora) || dataSaida.before(agora)) {
+            throw new DominioExcecao("As datas de atualização devem ser futuras, afinal ainda não criamos a máquina do tempo");
+        }
+    }
+}
