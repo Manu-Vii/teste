@@ -1,0 +1,49 @@
+//esse gerenciador de entrada é uma camada que conversa com o user
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class GerenciadorDeEntrada {
+
+    private Scanner sc;
+
+
+    public GerenciadorDeEntrada(Scanner sc) {
+        this.sc = sc;
+    }
+
+
+    public void imprimirMensagem(String mensagem) {
+        System.out.println(mensagem);
+    }
+
+
+    public void imprimirMensagemSemQuebra(String mensagem) {
+        System.out.print(mensagem);
+    }
+
+
+    public String lerLinha(String prompt) {
+        imprimirMensagemSemQuebra(prompt);
+        return sc.nextLine();
+    }
+
+
+    public int lerInteiro(String prompt) {
+        int valor = 0;
+        boolean entradaValida = false;
+        while (!entradaValida) {
+            imprimirMensagemSemQuebra(prompt);
+            try {
+
+                valor = sc.nextInt();
+                entradaValida = true;
+            } catch (InputMismatchException e) {
+
+                imprimirMensagem("Entrada inválida. Por favor, digite um número inteiro.");
+                sc.next();
+            }
+        }
+        return valor;
+    }
+}
