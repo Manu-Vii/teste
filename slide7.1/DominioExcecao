@@ -1,0 +1,12 @@
+// A classe de dominioExcecao vai herda de RuntimeException
+//o nome é feio mas li que é uma boa pratica :/
+
+public class DominioExcecao extends RuntimeException {
+
+    // descreve o que deu errado.
+    public DominioExcecao(String msg) {
+        // super(msg) chama o construtor da classe pai
+        // e passa a mensagem de erro para ela.
+        super(msg);
+    }
+}
