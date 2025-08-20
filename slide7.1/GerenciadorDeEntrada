@@ -1,4 +1,4 @@
-//esse gerenciador de entrada é uma camada que conversa com o user
+//esse gerenciador de entrada é um teste que resolvi botar nessa questão
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
