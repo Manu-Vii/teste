@@ -1,0 +1,68 @@
+//Emanuele vitória de Jesus Lima
+//  20/08
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Scanner;
+
+public class Aplicacoes {
+
+    public static void main(String[] args) {
+        // efine o padrão de datas.
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        Scanner sc = new Scanner(System.in);
+        //manda pro gerenciador
+        GerenciadorDeEntrada io = new GerenciadorDeEntrada(sc);
+
+
+        try {
+
+            int numeroQuarto = io.lerInteiro("Número do quarto: ");
+
+            io.imprimirMensagemSemQuebra("Data de entrada (dd/MM/yyyy): ");
+            Date dataEntrada = sdf.parse(sc.next());
+
+            io.imprimirMensagemSemQuebra("Data de saída (dd/MM/yyyy): ");
+            Date dataSaida = sdf.parse(sc.next());
+
+
+            Validacao.validarDatas(dataEntrada, dataSaida);
+            Validacao.validarDatasFuturas(dataEntrada, dataSaida);
+
+
+            Reserva reserva = new Reserva(numeroQuarto, dataEntrada, dataSaida);
+            io.imprimirMensagem(reserva.toString());
+             //esse IO aqui é um tipo de intermediário entre o programa e o user
+            io.imprimirMensagem("\nEntre com os dados para atualizar a reserva:");
+
+            io.imprimirMensagemSemQuebra("Data de entrada (dd/MM/yyyy): ");
+            Date novaDataEntrada = sdf.parse(sc.next());
+
+            io.imprimirMensagemSemQuebra("Data de saída (dd/MM/yyyy): ");
+            Date novaDataSaida = sdf.parse(sc.next());
+
+
+            Validacao.validarDatas(novaDataEntrada, novaDataSaida);
+            Validacao.validarDatasFuturas(novaDataEntrada, novaDataSaida);
+
+            //atualização para a classe reserva
+            reserva.setDataEntrada(novaDataEntrada);
+            reserva.setDataSaida(novaDataSaida);
+            io.imprimirMensagem(reserva.toString());
+
+        } catch (DominioExcecao e) {
+
+            io.imprimirMensagem("Erro na reserva, poxa :(  : " + e.getMessage());
+
+        } catch (ParseException e) {
+
+            io.imprimirMensagem("Formato de data inválido...");
+
+        } finally {
+            sc.close();
+        }
+    }
+}
