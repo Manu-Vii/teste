@@ -1,0 +1,34 @@
+//Emanuele Vitória de Jesus Lima
+//21/08/25
+
+import java.util.Scanner;
+
+public class Aplicacoes {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        GerenciadorDeEntrada io = new GerenciadorDeEntrada(sc);
+
+        try {
+
+            io.imprimirMensagem("Bem-vindo ao Banco, para começar entre com os dados da conta:");
+            int numero = io.lerInteiro("Número: ");
+            sc.nextLine();
+            String titular = io.lerNomeValido("Nome: ");
+            double saldoInicial = io.lerDouble("Saldo inicial: ");
+            double limiteSaque = io.lerDouble("Limite de saque: ");
+
+            Conta conta = new Conta(numero, titular, saldoInicial, limiteSaque);
+
+            double valorSaque = io.lerDouble("Qual valor você quer sacar hoje? : ");
+
+            conta.sacar(valorSaque);
+            io.imprimirMensagem("O Novo saldo é de: " + String.format("%.2f", conta.getSaldo()));
+
+        } catch (Excecao e) {
+            io.imprimirMensagem("Ocorreu um erro no saque..: " + e.getMessage());
+        } finally {
+            sc.close();
+        }
+    }
+}
