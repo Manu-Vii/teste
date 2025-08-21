@@ -1,0 +1,69 @@
+//tentativa 2 desse gerenciadorzinho
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class GerenciadorDeEntrada {
+
+    private Scanner sc;
+
+    public GerenciadorDeEntrada(Scanner sc) {
+        this.sc = sc;
+    }
+    public void imprimirMensagem(String mensagem) {
+        System.out.println(mensagem);
+    }
+    public void imprimirMensagemSemQuebra(String mensagem) {
+        System.out.print(mensagem);
+    }
+
+    public int lerInteiro(String prompt) {
+        int valor = 0;
+        boolean entradaValida = false;
+        while (!entradaValida) {
+            imprimirMensagemSemQuebra(prompt);
+            try {
+                valor = sc.nextInt();
+                entradaValida = true;
+            } catch (InputMismatchException e) {
+                imprimirMensagem("Opa, essa entrada é inválidar, digite um número inteiro.");
+                sc.next();
+            }
+        }
+        return valor;
+    }
+
+    public double lerDouble(String prompt) {
+        double valor = 0.0;
+        boolean entradaValida = false;
+        while (!entradaValida) {
+            imprimirMensagemSemQuebra(prompt);
+            try {
+                valor = sc.nextDouble();
+                entradaValida = true;
+            } catch (InputMismatchException e) {
+                imprimirMensagem("Ops, não é válido, digite um valor numérico.");
+                sc.next();
+            }
+        }
+        return valor;
+    }
+
+    // valida um nome para que seja letras
+    public String lerNomeValido(String prompt) {
+        String nome = "";
+        boolean entradaValida = false;
+        while (!entradaValida) {
+            imprimirMensagemSemQuebra(prompt);
+            nome = sc.nextLine();
+
+            // Regex [a-zA-Z\\s]+ ele testa se a string contém apenas letras e espaços
+            if (nome.matches("[a-zA-Z\\s]+")) {
+                entradaValida = true;
+            } else {
+                imprimirMensagem("Hey, seu NOME não deve conter números...digite apenas letras.");
+            }
+        }
+        return nome;
+    }
+}
