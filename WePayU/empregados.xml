@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="24.0.2" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <string>2</string>
+   <object class="br.ufal.ic.p2.wepayu.models.EmpregadoHorista">
+    <void property="endereco">
+     <string>Rua dos Jooes, 333 - Campina Grande</string>
+    </void>
+    <void property="id">
+     <string>2</string>
+    </void>
+    <void property="nome">
+     <string>Maria</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
